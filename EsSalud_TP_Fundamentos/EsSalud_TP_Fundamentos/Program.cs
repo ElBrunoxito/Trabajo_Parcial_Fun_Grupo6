@@ -1,3 +1,5 @@
+using EsSalud_TP_Fundamentos.Interfaces;
+
 namespace EsSalud_TP_Fundamentos
 {
     internal static class Program
@@ -11,7 +13,7 @@ namespace EsSalud_TP_Fundamentos
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
-            Application.Run(new Form1());
+            Application.Run(new Principal("12315679"));
         }
     }
 }
