@@ -26,12 +26,14 @@ namespace EsSalud_TP_Fundamentos.Interfaces
         {
             InicioSesion f = new InicioSesion();
             f.Show();
-            this.Close();
+            
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-
+            Registro r = new();
+            r.Show();
+            
         }
     }
 }

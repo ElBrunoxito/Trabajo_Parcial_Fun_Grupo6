@@ -37,10 +37,6 @@
             Panel_Programacion_Citas = new Panel();
             uno_cb_tipo = new ComboBox();
             label7 = new Label();
-            Panel_Info_Adms = new Panel();
-            dos_btn_beneficios = new Button();
-            label6 = new Label();
-            dos_btn_tramites = new Button();
             label5 = new Label();
             button1 = new Button();
             uno_cb_medicos = new ComboBox();
@@ -51,9 +47,25 @@
             uno_dt_fecha = new DateTimePicker();
             label1 = new Label();
             label2 = new Label();
+            Panel_Info_Adms = new Panel();
+            panel_Consultas = new Panel();
+            label10 = new Label();
+            cuatro_ingresar_bt = new Button();
+            groupBox1 = new GroupBox();
+            radioButton2 = new RadioButton();
+            radioButton1 = new RadioButton();
+            cuatro_hospital = new ComboBox();
+            label9 = new Label();
+            cuatro_Queja_tb = new TextBox();
+            label8 = new Label();
+            dos_btn_beneficios = new Button();
+            label6 = new Label();
+            dos_btn_tramites = new Button();
             menuStrip1.SuspendLayout();
             Panel_Programacion_Citas.SuspendLayout();
             Panel_Info_Adms.SuspendLayout();
+            panel_Consultas.SuspendLayout();
+            groupBox1.SuspendLayout();
             SuspendLayout();
             // 
             // menuStrip1
@@ -104,13 +116,13 @@
             consultasYQuejasToolStripMenuItem.Name = "consultasYQuejasToolStripMenuItem";
             consultasYQuejasToolStripMenuItem.Size = new Size(150, 20);
             consultasYQuejasToolStripMenuItem.Text = "Consultas y quejas";
+            consultasYQuejasToolStripMenuItem.Click += consultasYQuejasToolStripMenuItem_Click;
             // 
             // Panel_Programacion_Citas
             // 
             Panel_Programacion_Citas.BackColor = SystemColors.Control;
             Panel_Programacion_Citas.Controls.Add(uno_cb_tipo);
             Panel_Programacion_Citas.Controls.Add(label7);
-            Panel_Programacion_Citas.Controls.Add(Panel_Info_Adms);
             Panel_Programacion_Citas.Controls.Add(label5);
             Panel_Programacion_Citas.Controls.Add(button1);
             Panel_Programacion_Citas.Controls.Add(uno_cb_medicos);
@@ -121,7 +133,7 @@
             Panel_Programacion_Citas.Controls.Add(uno_dt_fecha);
             Panel_Programacion_Citas.Controls.Add(label1);
             Panel_Programacion_Citas.Controls.Add(label2);
-            Panel_Programacion_Citas.Location = new Point(0, 27);
+            Panel_Programacion_Citas.Location = new Point(0, 218);
             Panel_Programacion_Citas.Name = "Panel_Programacion_Citas";
             Panel_Programacion_Citas.Size = new Size(890, 537);
             Panel_Programacion_Citas.TabIndex = 1;
@@ -133,7 +145,7 @@
             uno_cb_tipo.BackColor = SystemColors.HotTrack;
             uno_cb_tipo.ForeColor = SystemColors.Info;
             uno_cb_tipo.FormattingEnabled = true;
-            uno_cb_tipo.Location = new Point(248, 87);
+            uno_cb_tipo.Location = new Point(248, 86);
             uno_cb_tipo.Name = "uno_cb_tipo";
             uno_cb_tipo.Size = new Size(200, 23);
             uno_cb_tipo.TabIndex = 66;
@@ -144,66 +156,11 @@
             label7.AutoSize = true;
             label7.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point);
             label7.ForeColor = Color.Black;
-            label7.Location = new Point(100, 86);
+            label7.Location = new Point(100, 85);
             label7.Name = "label7";
             label7.Size = new Size(39, 20);
             label7.TabIndex = 65;
             label7.Text = "Tipo";
-            // 
-            // Panel_Info_Adms
-            // 
-            Panel_Info_Adms.BackColor = SystemColors.Control;
-            Panel_Info_Adms.Controls.Add(dos_btn_beneficios);
-            Panel_Info_Adms.Controls.Add(label6);
-            Panel_Info_Adms.Controls.Add(dos_btn_tramites);
-            Panel_Info_Adms.Location = new Point(711, 3);
-            Panel_Info_Adms.Name = "Panel_Info_Adms";
-            Panel_Info_Adms.Size = new Size(890, 537);
-            Panel_Info_Adms.TabIndex = 64;
-            Panel_Info_Adms.Visible = false;
-            // 
-            // dos_btn_beneficios
-            // 
-            dos_btn_beneficios.BackColor = SystemColors.ButtonHighlight;
-            dos_btn_beneficios.FlatAppearance.BorderColor = SystemColors.HotTrack;
-            dos_btn_beneficios.FlatAppearance.BorderSize = 2;
-            dos_btn_beneficios.FlatAppearance.MouseOverBackColor = Color.FromArgb(107, 164, 222);
-            dos_btn_beneficios.FlatStyle = FlatStyle.Flat;
-            dos_btn_beneficios.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            dos_btn_beneficios.ForeColor = Color.Black;
-            dos_btn_beneficios.Location = new Point(198, 200);
-            dos_btn_beneficios.Name = "dos_btn_beneficios";
-            dos_btn_beneficios.Size = new Size(262, 45);
-            dos_btn_beneficios.TabIndex = 64;
-            dos_btn_beneficios.Text = "Beneficios de seguros";
-            dos_btn_beneficios.UseVisualStyleBackColor = false;
-            // 
-            // label6
-            // 
-            label6.AutoSize = true;
-            label6.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            label6.ForeColor = Color.Black;
-            label6.Location = new Point(213, 45);
-            label6.Name = "label6";
-            label6.Size = new Size(222, 20);
-            label6.TabIndex = 63;
-            label6.Text = "Informacion Administrativa";
-            // 
-            // dos_btn_tramites
-            // 
-            dos_btn_tramites.BackColor = SystemColors.ButtonHighlight;
-            dos_btn_tramites.FlatAppearance.BorderColor = SystemColors.HotTrack;
-            dos_btn_tramites.FlatAppearance.BorderSize = 2;
-            dos_btn_tramites.FlatAppearance.MouseOverBackColor = Color.FromArgb(107, 164, 222);
-            dos_btn_tramites.FlatStyle = FlatStyle.Flat;
-            dos_btn_tramites.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            dos_btn_tramites.ForeColor = Color.Black;
-            dos_btn_tramites.Location = new Point(198, 132);
-            dos_btn_tramites.Name = "dos_btn_tramites";
-            dos_btn_tramites.Size = new Size(262, 45);
-            dos_btn_tramites.TabIndex = 62;
-            dos_btn_tramites.Text = "Tramites administrativos";
-            dos_btn_tramites.UseVisualStyleBackColor = false;
             // 
             // label5
             // 
@@ -315,11 +272,187 @@
             label2.TabIndex = 54;
             label2.Text = "Fecha";
             // 
+            // Panel_Info_Adms
+            // 
+            Panel_Info_Adms.BackColor = SystemColors.Control;
+            Panel_Info_Adms.Controls.Add(dos_btn_beneficios);
+            Panel_Info_Adms.Controls.Add(label6);
+            Panel_Info_Adms.Controls.Add(dos_btn_tramites);
+            Panel_Info_Adms.Location = new Point(25, 188);
+            Panel_Info_Adms.Name = "Panel_Info_Adms";
+            Panel_Info_Adms.Size = new Size(890, 537);
+            Panel_Info_Adms.TabIndex = 67;
+            Panel_Info_Adms.Visible = false;
+            // 
+            // panel_Consultas
+            // 
+            panel_Consultas.BackColor = SystemColors.Control;
+            panel_Consultas.Controls.Add(label10);
+            panel_Consultas.Controls.Add(cuatro_ingresar_bt);
+            panel_Consultas.Controls.Add(groupBox1);
+            panel_Consultas.Controls.Add(cuatro_hospital);
+            panel_Consultas.Controls.Add(label9);
+            panel_Consultas.Controls.Add(cuatro_Queja_tb);
+            panel_Consultas.Controls.Add(label8);
+            panel_Consultas.Location = new Point(145, 172);
+            panel_Consultas.Name = "panel_Consultas";
+            panel_Consultas.Size = new Size(890, 537);
+            panel_Consultas.TabIndex = 68;
+            panel_Consultas.Visible = false;
+            panel_Consultas.Paint += panel_Consultas_Paint;
+            // 
+            // label10
+            // 
+            label10.AutoSize = true;
+            label10.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            label10.ForeColor = Color.Black;
+            label10.Location = new Point(169, 200);
+            label10.Name = "label10";
+            label10.Size = new Size(91, 20);
+            label10.TabIndex = 69;
+            label10.Text = "Comentario";
+            // 
+            // cuatro_ingresar_bt
+            // 
+            cuatro_ingresar_bt.BackColor = SystemColors.HotTrack;
+            cuatro_ingresar_bt.FlatAppearance.BorderColor = SystemColors.HotTrack;
+            cuatro_ingresar_bt.FlatAppearance.BorderSize = 2;
+            cuatro_ingresar_bt.FlatAppearance.MouseOverBackColor = Color.White;
+            cuatro_ingresar_bt.FlatStyle = FlatStyle.Flat;
+            cuatro_ingresar_bt.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            cuatro_ingresar_bt.ForeColor = Color.White;
+            cuatro_ingresar_bt.Location = new Point(257, 436);
+            cuatro_ingresar_bt.Name = "cuatro_ingresar_bt";
+            cuatro_ingresar_bt.Size = new Size(205, 45);
+            cuatro_ingresar_bt.TabIndex = 68;
+            cuatro_ingresar_bt.Text = "Ingresar";
+            cuatro_ingresar_bt.UseVisualStyleBackColor = false;
+            cuatro_ingresar_bt.Click += button2_Click;
+            // 
+            // groupBox1
+            // 
+            groupBox1.Controls.Add(radioButton2);
+            groupBox1.Controls.Add(radioButton1);
+            groupBox1.Location = new Point(169, 129);
+            groupBox1.Name = "groupBox1";
+            groupBox1.Size = new Size(161, 46);
+            groupBox1.TabIndex = 67;
+            groupBox1.TabStop = false;
+            // 
+            // radioButton2
+            // 
+            radioButton2.AutoSize = true;
+            radioButton2.Location = new Point(88, 14);
+            radioButton2.Name = "radioButton2";
+            radioButton2.Size = new Size(56, 19);
+            radioButton2.TabIndex = 69;
+            radioButton2.TabStop = true;
+            radioButton2.Text = "Queja";
+            radioButton2.UseVisualStyleBackColor = true;
+            // 
+            // radioButton1
+            // 
+            radioButton1.AutoSize = true;
+            radioButton1.Location = new Point(6, 14);
+            radioButton1.Name = "radioButton1";
+            radioButton1.Size = new Size(72, 19);
+            radioButton1.TabIndex = 68;
+            radioButton1.TabStop = true;
+            radioButton1.Text = "Consulta";
+            radioButton1.UseVisualStyleBackColor = true;
+            // 
+            // cuatro_hospital
+            // 
+            cuatro_hospital.BackColor = SystemColors.HotTrack;
+            cuatro_hospital.ForeColor = SystemColors.Info;
+            cuatro_hospital.FormattingEnabled = true;
+            cuatro_hospital.Location = new Point(315, 86);
+            cuatro_hospital.Name = "cuatro_hospital";
+            cuatro_hospital.Size = new Size(200, 23);
+            cuatro_hospital.TabIndex = 66;
+            // 
+            // label9
+            // 
+            label9.AutoSize = true;
+            label9.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            label9.ForeColor = Color.Black;
+            label9.Location = new Point(167, 86);
+            label9.Name = "label9";
+            label9.Size = new Size(67, 20);
+            label9.TabIndex = 65;
+            label9.Text = "Hospital";
+            // 
+            // cuatro_Queja_tb
+            // 
+            cuatro_Queja_tb.Location = new Point(169, 223);
+            cuatro_Queja_tb.Multiline = true;
+            cuatro_Queja_tb.Name = "cuatro_Queja_tb";
+            cuatro_Queja_tb.Size = new Size(346, 183);
+            cuatro_Queja_tb.TabIndex = 64;
+            // 
+            // label8
+            // 
+            label8.AutoSize = true;
+            label8.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            label8.ForeColor = Color.Black;
+            label8.Location = new Point(257, 45);
+            label8.Name = "label8";
+            label8.Size = new Size(160, 20);
+            label8.TabIndex = 63;
+            label8.Text = "Consultas y quejas";
+            // 
+            // dos_btn_beneficios
+            // 
+            dos_btn_beneficios.BackColor = SystemColors.ButtonHighlight;
+            dos_btn_beneficios.FlatAppearance.BorderColor = SystemColors.HotTrack;
+            dos_btn_beneficios.FlatAppearance.BorderSize = 2;
+            dos_btn_beneficios.FlatAppearance.MouseOverBackColor = Color.FromArgb(107, 164, 222);
+            dos_btn_beneficios.FlatStyle = FlatStyle.Flat;
+            dos_btn_beneficios.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            dos_btn_beneficios.ForeColor = Color.Black;
+            dos_btn_beneficios.Location = new Point(198, 200);
+            dos_btn_beneficios.Name = "dos_btn_beneficios";
+            dos_btn_beneficios.Size = new Size(262, 45);
+            dos_btn_beneficios.TabIndex = 64;
+            dos_btn_beneficios.Text = "Beneficios de seguros";
+            dos_btn_beneficios.UseVisualStyleBackColor = false;
+            dos_btn_beneficios.Click += dos_btn_beneficios_Click;
+            // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            label6.ForeColor = Color.Black;
+            label6.Location = new Point(213, 45);
+            label6.Name = "label6";
+            label6.Size = new Size(222, 20);
+            label6.TabIndex = 63;
+            label6.Text = "Informacion Administrativa";
+            // 
+            // dos_btn_tramites
+            // 
+            dos_btn_tramites.BackColor = SystemColors.ButtonHighlight;
+            dos_btn_tramites.FlatAppearance.BorderColor = SystemColors.HotTrack;
+            dos_btn_tramites.FlatAppearance.BorderSize = 2;
+            dos_btn_tramites.FlatAppearance.MouseOverBackColor = Color.FromArgb(107, 164, 222);
+            dos_btn_tramites.FlatStyle = FlatStyle.Flat;
+            dos_btn_tramites.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            dos_btn_tramites.ForeColor = Color.Black;
+            dos_btn_tramites.Location = new Point(198, 132);
+            dos_btn_tramites.Name = "dos_btn_tramites";
+            dos_btn_tramites.Size = new Size(262, 45);
+            dos_btn_tramites.TabIndex = 62;
+            dos_btn_tramites.Text = "Tramites administrativos";
+            dos_btn_tramites.UseVisualStyleBackColor = false;
+            dos_btn_tramites.Click += dos_btn_tramites_Click;
+            // 
             // Principal
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(890, 564);
+            Controls.Add(panel_Consultas);
+            Controls.Add(Panel_Info_Adms);
             Controls.Add(Panel_Programacion_Citas);
             Controls.Add(menuStrip1);
             Name = "Principal";
@@ -331,6 +464,10 @@
             Panel_Programacion_Citas.PerformLayout();
             Panel_Info_Adms.ResumeLayout(false);
             Panel_Info_Adms.PerformLayout();
+            panel_Consultas.ResumeLayout(false);
+            panel_Consultas.PerformLayout();
+            groupBox1.ResumeLayout(false);
+            groupBox1.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -354,11 +491,21 @@
         private DateTimePicker uno_dt_fecha;
         private Label label1;
         private Label label2;
+        private ComboBox uno_cb_tipo;
+        private Label label7;
         private Panel Panel_Info_Adms;
         private Button dos_btn_beneficios;
         private Label label6;
         private Button dos_btn_tramites;
-        private ComboBox uno_cb_tipo;
-        private Label label7;
+        private Panel panel_Consultas;
+        private Label label8;
+        private TextBox cuatro_Queja_tb;
+        private GroupBox groupBox1;
+        private RadioButton radioButton2;
+        private RadioButton radioButton1;
+        private ComboBox cuatro_hospital;
+        private Label label9;
+        private Button cuatro_ingresar_bt;
+        private Label label10;
     }
 }

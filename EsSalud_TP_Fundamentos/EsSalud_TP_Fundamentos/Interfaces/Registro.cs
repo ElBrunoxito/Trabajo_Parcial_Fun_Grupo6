@@ -56,15 +56,21 @@ namespace EsSalud_TP_Fundamentos.Interfaces
                 MessageBox.Show("Este DNI ya se registro xd");
                 return;
             }
+            
             if (TB_CContra.Text != TB_Contra.Text)
             {
                 MessageBox.Show("Las contraseñas no coinciden");
                 return;
             }
+            if (!ValidarContraseña(TB_CContra.Text))
+            {
+                MessageBox.Show("La contraseña debe tener 8 caracteres y un numero como minimo");
+                return;
+            }
 
 
 
-            Paciente? p = new()
+                Paciente? p = new()
             {
                 DNI = TB_DNI.Text,
                 Nombre = TB_Nombre.Text,
@@ -80,8 +86,18 @@ namespace EsSalud_TP_Fundamentos.Interfaces
 
             };
             PacienteService.addPaciente(p);
+            MessageBox.Show("Ya estas registrado");
+            this.Close();
         }
+        private bool ValidarContraseña(string contraseña)
+        {
+            // La expresión regular requiere al menos 8 caracteres y al menos un número
+            string patron = @"^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$";
 
+            Regex regex = new Regex(patron);
+
+            return regex.IsMatch(contraseña);
+        }
         private void button2_Click(object sender, EventArgs e)
         {
             CargarImagen();

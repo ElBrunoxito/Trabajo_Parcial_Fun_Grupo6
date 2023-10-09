@@ -25,9 +25,10 @@ namespace EsSalud_TP_Fundamentos.Servicios
         {
             //string conexion = Server + ";"+DataBase+";Integrated Security=True";
             string conexion = Server + ";" + DataBase + ";" + "integrated security=True; TrustServerCertificate =True";
-            //string conexion= "Data Source=localhost;Initial Catalog=TP_Fundamentos;Integrated Security=True; TrustServerCertificate =True";
+
 
             string Query = "INSERT INTO Paciente VALUES('" + p.DNI + "', '" + p.Nombre + "','" + p.Apellidos + "',@fecha,'" + p.Genero + "','" + p.Direccion + "','" + p.Telefono + "','" + p.Correo + "', @imagen , '"+p.CoE+"')";
+            string QueryAgregarBenficios = PacienteService.getBeneficio(PacienteService.getEdad(p.FechaNacimiento), p.Genero);
             try
             {
                 using (SqlConnection sqlConnection1 = new SqlConnection(conexion))
@@ -43,7 +44,12 @@ namespace EsSalud_TP_Fundamentos.Servicios
                         
                         
                         cmd.ExecuteNonQuery();
-                        MessageBox.Show("Introducido");
+                        //MessageBox.Show("Introducido");
+                    }
+                    using (SqlCommand cmd2 = new SqlCommand(QueryAgregarBenficios,sqlConnection1))
+                    {
+                        cmd2.Parameters.AddWithValue("@dni",p.DNI);
+                        cmd2.ExecuteNonQuery();
                     }
                 }
             }
@@ -287,7 +293,7 @@ namespace EsSalud_TP_Fundamentos.Servicios
             }
             catch (SqlException ex)
             {
-                MessageBox.Show("ERROR tmrmedico: " + ex.ToString());
+                MessageBox.Show("ERROR: " + ex.ToString());
                 Clipboard.SetText(ex.Message);
 
             }
@@ -501,9 +507,79 @@ namespace EsSalud_TP_Fundamentos.Servicios
 
         }
 
-        
 
-        
+
+        //Beneficios
+        public Stack<Beneficio> getBeneficiosPorDNI(string dni)
+        {
+            Stack<Beneficio> s = new();
+            string Query = "SELECT * FROM Beneficios B WHERE B.Paciente_DNI = @DNI";
+
+            string conexion = Server + ";" + DataBase + ";" + "integrated security=True; TrustServerCertificate =True";
+            try
+            {
+                SqlConnection cn = new SqlConnection(conexion);
+
+                //Medico
+                using (SqlCommand sqlCommand = new SqlCommand(Query, cn))
+                {
+                    //Abrir Conexion
+                    cn.Open();
+                    //Leer Comandos sql
+                    sqlCommand.Parameters.AddWithValue("@DNI",dni);
+
+                    using (SqlDataReader reader = sqlCommand.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            Beneficio b = new();
+                            b.Id = reader.GetInt32(0);
+                            b.Nombre = reader.GetString(1);
+                            b.Descripcion = reader.GetString(2);
+                            b.Cantidad = reader.GetFloat(3);
+                            s.Push(b);
+                        }
+                    }
+                }
+
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show("ERROR: " + ex.ToString());
+                Clipboard.SetText(ex.Message);
+            }
+
+            return s;
+        }
+
+
+        //QUEJAS Y COMENTARIOS
+        public void addConsultaQueja(ConsultaQueja cq)
+        {
+            string conexion = Server + ";" + DataBase + ";" + "integrated security=True; TrustServerCertificate =True";
+
+            string Query = "INSERT INTO Reclamos (titulo, descripcion, Paciente_DNI,Hospital_idHospital) " +
+                           $"VALUES ('{cq.nombre}','{cq.descricao}','{cq.DNIPaciente}','{cq.id_Hospital}')";
+            try
+            {
+                using (SqlConnection sqlConnection1 = new SqlConnection(conexion))
+                {
+                    sqlConnection1.Open();
+                    using (SqlCommand cmd = new SqlCommand(Query, sqlConnection1))
+                    {                         
+                        cmd.ExecuteNonQuery();
+                        MessageBox.Show("Comentario agregado");
+                    }
+                }
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show("Error: " + ex.Message);
+                Clipboard.SetText(ex.Message);
+            }
+        }
+
+
 
         static Bitmap ByteArrayToBitmap(byte[] byteArray)
         {

@@ -46,3 +46,5 @@ C:\Yo\Cursos\Fundamentos\TP\EsSalud_TP_Fundamentos\EsSalud_TP_Fundamentos\obj\De
 C:\Yo\Cursos\Fundamentos\TP\EsSalud_TP_Fundamentos\EsSalud_TP_Fundamentos\obj\Debug\net6.0-windows\Interop.TxBDD.dll
 C:\Yo\Cursos\Fundamentos\TP\EsSalud_TP_Fundamentos\EsSalud_TP_Fundamentos\obj\Debug\net6.0-windows\EsSalud_TP_Fundamentos.csproj.ResolveComReference.cache
 C:\Yo\Cursos\Fundamentos\TP\EsSalud_TP_Fundamentos\EsSalud_TP_Fundamentos\obj\Debug\net6.0-windows\EsSalud_TP_Fundamentos.csproj.CopyComplete
+C:\Yo\Cursos\Fundamentos\TP\EsSalud_TP_Fundamentos\EsSalud_TP_Fundamentos\obj\Debug\net6.0-windows\EsSalud_TP_Fundamentos.Interfaces.Beneficios_S.resources
+C:\Yo\Cursos\Fundamentos\TP\EsSalud_TP_Fundamentos\EsSalud_TP_Fundamentos\obj\Debug\net6.0-windows\EsSalud_TP_Fundamentos.Interfaces.Tramites_S.resources

@@ -24,7 +24,10 @@ namespace EsSalud_TP_Fundamentos.Servicios
         {
             return c.getHospitalesExistentes();
         }
-            public static List<Hospital> getHospitalesPorEspecialidad(int idEspecialidad)
+        public static List<Medico> getAllMedicos() { 
+            return c.getMedicosExistentes();
+        }
+        public static List<Hospital> getHospitalesPorEspecialidad(int idEspecialidad)
         {
             return c.getHospitalesPorEspecialidad(idEspecialidad);
         }

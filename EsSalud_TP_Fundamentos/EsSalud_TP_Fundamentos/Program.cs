@@ -13,7 +13,8 @@ namespace EsSalud_TP_Fundamentos
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
-            Application.Run(new Principal("12315679"));
+            //Application.Run(new Principal("12315679"));
+            Application.Run(new Principal("72890746"));
         }
     }
 }

@@ -10,8 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Threading;
-
-
+using Microsoft.IdentityModel.Tokens;
 
 namespace EsSalud_TP_Fundamentos.Interfaces
 {
@@ -47,14 +46,20 @@ namespace EsSalud_TP_Fundamentos.Interfaces
 
         private void informacionAdministrativaYSegurosToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            Panel_Info_Adms.Location = new Point(0, 24);
+            Panel_Info_Adms.Visible = true;
+            Panel_Programacion_Citas.Visible = false;
+            panel_Consultas.Visible = false;
         }
 
         private void programacionDeCitasToolStripMenuItem_Click(object sender, EventArgs e)
         {
             //Lenar el combo box
+            Panel_Programacion_Citas.Location = new Point(0,24);
             Panel_Programacion_Citas.Visible = true;
-
+            Panel_Info_Adms.Visible = false;
+            panel_Consultas.Visible = false;
+            uno_cb_tipo.Items.Clear();
             List<Especialidad> letemp = new();
             letemp = ReservaService.getAllEspecialidades();
             letemp.ForEach(e =>
@@ -87,11 +92,10 @@ namespace EsSalud_TP_Fundamentos.Interfaces
 
         private void button1_Click(object sender, EventArgs e)
         {
-            MessageBox.Show(uno_dt_fecha.Value.Date.ToString());
-            MessageBox.Show(uno_dt_hora.Value.TimeOfDay.ToString());
+            Panel_Info_Adms.Visible = false;
             if (uno_cb_tipo.Items.Count == 0 || uno_cb_medicos.Items.Count == 0 || uno_cb_hospital.Items.Count == 0)
             {
-                MessageBox.Show("No hay reserva para esto D:");
+                MessageBox.Show("No hay reserva D:");
                 return;
             }
 
@@ -101,14 +105,24 @@ namespace EsSalud_TP_Fundamentos.Interfaces
                 return;
             }
             //Validar la hora
-
+            DateTime dtTemp = DateTime.Now;
+            if (dtTemp.Month > uno_dt_fecha.Value.Month || dtTemp.Day > uno_dt_fecha.Value.Day || dtTemp.Hour > uno_dt_hora.Value.Hour)
+            {
+                MessageBox.Show("Elija un horario o dia correcto :)");
+                return;
+            }
             //Existe horario
             int idM = ReservaService.getIDMedico(uno_cb_medicos.Text);
             int idH = ReservaService.getIDHospital(uno_cb_hospital.Text);
-            bool aux_exite = ReservaService.ExisteHorario(uno_dt_fecha.Value,uno_dt_hora.Value,idM,idH);
+            bool aux_exite = ReservaService.ExisteHorario(uno_dt_fecha.Value, uno_dt_hora.Value, idM, idH);
             if (aux_exite)
             {
                 MessageBox.Show("La cita ya esta reservada");
+                return;
+            }
+            DialogResult dr = MessageBox.Show("¿Los datos son correctos?", "Reserva", MessageBoxButtons.YesNo);
+            if (dr == DialogResult.No)
+            {
                 return;
             }
             TimeSpan tste = TimeSpan.FromHours(1);
@@ -125,12 +139,14 @@ namespace EsSalud_TP_Fundamentos.Interfaces
             };
 
             ReservaService.addCitaMedica(ctemp);
+            MessageBox.Show("Introducido");
         }
 
         private void uno_cb_tipo_SelectedIndexChanged(object sender, EventArgs e)
         {
             //Cmabiar hospital
-
+            uno_cb_hospital.Text = string.Empty;
+            uno_cb_medicos.Text = string.Empty;
             List<Hospital> lhtemp = new();
             lhtemp = ReservaService.getHospitalesPorEspecialidad(ReservaService.getIDEspecialidad(uno_cb_tipo.Text));
             uno_cb_hospital.Items.Clear();
@@ -145,6 +161,7 @@ namespace EsSalud_TP_Fundamentos.Interfaces
         private void uno_cb_hospital_SelectedIndexChanged(object sender, EventArgs e)
         {
             //Seleccionar medicos de ese hospital
+            uno_cb_medicos.Text = string.Empty;
             List<Medico> lmtemp = new();
             int ih = ReservaService.getIDHospital(uno_cb_hospital.Text);
             int ie = ReservaService.getIDEspecialidad(uno_cb_tipo.Text);
@@ -160,6 +177,90 @@ namespace EsSalud_TP_Fundamentos.Interfaces
 
         private void uno_dt_fecha_ValueChanged(object sender, EventArgs e)
         {
+
+        }
+
+        private void dos_btn_tramites_Click(object sender, EventArgs e)
+        {
+            //TRAMITES ADMINISTRATIVOS
+            Tramites_S t = new();
+            t.Show();
+        }
+
+        private void dos_btn_beneficios_Click(object sender, EventArgs e)
+        {
+            //BENEFICIOS DE SEGUROS
+            Beneficios_S f = new(DNI);
+            f.Show();
+        }
+
+        private void groupBox1_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private Dictionary<string, int> nobmre_ID_Hos;
+        private void consultasYQuejasToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            panel_Consultas.Location = new Point(0, 24);
+            panel_Consultas.Visible = true;
+            Panel_Info_Adms.Visible = false;
+            Panel_Programacion_Citas.Visible = false;
+            //Consultas y quejas
+            List<Hospital> mtemp = new();
+            nobmre_ID_Hos = new();
+            mtemp = ConsultaService.getAllHospitales();
+            cuatro_hospital.Items.Clear();
+            foreach (Hospital m in mtemp)
+            {
+                cuatro_hospital.Items.Add(m.Nombre);
+                nobmre_ID_Hos.Add(m.Nombre, m.ID);
+            }
+
+            radioButton1.Checked = true;
+
+        }
+
+        private void panel_Consultas_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            if (cuatro_hospital.Text == "")
+            {
+                MessageBox.Show("Selecione un hospital");
+                return;
+            }
+            string title = "";
+
+            if (radioButton1.Checked == true)
+            {
+                title = radioButton1.Text;
+            }
+            else if (radioButton2.Checked == true)
+            {
+                title = radioButton2.Text;
+            }
+            if (cuatro_Queja_tb.Text.IsNullOrEmpty())
+            {
+                MessageBox.Show("Ingresa tu comentario");
+                return;
+            }
+
+            //Ingresar
+            ConsultaQueja cqtemp = new()
+            {
+                id = null,
+                nombre = title,
+                descricao = cuatro_Queja_tb.Text,
+                DNIPaciente = this.DNI,
+                id_Hospital = nobmre_ID_Hos[cuatro_hospital.Text]
+            };
+
+            ConsultaService.addConsultaQueja(cqtemp);
+            //MessageBox.Show("Comentario agregado");
 
         }
     }
